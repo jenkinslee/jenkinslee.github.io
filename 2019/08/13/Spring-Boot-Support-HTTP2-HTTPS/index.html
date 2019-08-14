@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Spring Boot,">
 
 
 
@@ -79,13 +79,24 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Jincheng">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="ForewordNowadays, the common scenario for high-performance secure encryption for enterprise applications is to support both HTTP and HTTPS.This blog will show you how to support HTTP and HPPTS with Sp">
+<meta name="keywords" content="Spring Boot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot - Support HTTP2&amp;HTTPS">
+<meta property="og:url" content="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/index.html">
 <meta property="og:site_name" content="Jincheng">
+<meta property="og:description" content="ForewordNowadays, the common scenario for high-performance secure encryption for enterprise applications is to support both HTTP and HTTPS.This blog will show you how to support HTTP and HPPTS with Sp">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/demo.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/layer.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/question.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/question.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/cer.png">
+<meta property="og:updated_time" content="2019-08-14T13:10:15.618Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jincheng">
+<meta name="twitter:title" content="Spring Boot - Support HTTP2&amp;HTTPS">
+<meta name="twitter:description" content="ForewordNowadays, the common scenario for high-performance secure encryption for enterprise applications is to support both HTTP and HTTPS.This blog will show you how to support HTTP and HPPTS with Sp">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/demo.png">
 
 
 
@@ -115,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/">
 
 
 
 
 
-  <title>Jincheng</title>
+  <title>Spring Boot - Support HTTP2&HTTPS | Jincheng</title>
   
 
 
@@ -140,8 +151,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,9 +224,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +256,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/" itemprop="url">Spring Boot - Support HTTP2&HTTPS</a></h1>
+          <h1 class="post-title" itemprop="name headline">Spring Boot - Support HTTP2&HTTPS</h1>
         
 
         <div class="post-meta">
@@ -298,9 +306,7 @@
       
 
       
-        
-          
-            <h1 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h1><p>Nowadays, the common scenario for high-performance secure encryption for enterprise applications is to support both HTTP and HTTPS.<br>This blog will show you how to support HTTP and HPPTS with Spring Boot. Some of the Spring boot’s web containers can already supports HTTP2, this example used Undertow.</p>
+        <h1 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h1><p>Nowadays, the common scenario for high-performance secure encryption for enterprise applications is to support both HTTP and HTTPS.<br>This blog will show you how to support HTTP and HPPTS with Spring Boot. Some of the Spring boot’s web containers can already supports HTTP2, this example used Undertow.</p>
 <h1 id="What’s-HTTP2"><a href="#What’s-HTTP2" class="headerlink" title="What’s HTTP2?"></a>What’s HTTP2?</h1><p>From the WIKIPEDIA: HTTP/2 (originally named HTTP/2.0) is a major revision of the HTTP network protocol used by the World Wide Web. It was derived from the earlier experimental SPDY protocol, originally developed by Google. HTTP/2 was developed by the Hypertext Transfer Protocol working group httpbis (where bis means “second”) of the Internet Engineering Task Force. HTTP/2 is the first new version of HTTP since HTTP 1.1, which was standardized in RFC 2068 in 1997. The Working Group presented HTTP/2 to IESG for consideration as a Proposed Standard in December 2014, and IESG approved it to publish as Proposed Standard on February 17, 2015. The HTTP/2 specification was published as RFC 7540 in May 2015.</p>
 <h1 id="Why-HTTP2"><a href="#Why-HTTP2" class="headerlink" title="Why HTTP2?"></a>Why HTTP2?</h1><p>Let’s see the Akamai Demo from <a href="https://http2.akamai.com/demo" target="_blank" rel="noopener">https://http2.akamai.com/demo</a><br><img src="demo.png" alt><br>We can see the load speed of HTTP2 is faster, but the latency is longer, that’s interesting, because reducing latency is a big feature of HTTP2, maybe depend on the network quality. Anyway, faster is good.</p>
 <h1 id="What’s-HTTPS"><a href="#What’s-HTTPS" class="headerlink" title="What’s HTTPS?"></a>What’s HTTPS?</h1><p>Let’s dig into SSL first. SSL (Secure Sockets Layer) is a security protocol that provides security and data integrity for network communications, SSL is working at the transport layer. SSL can be divided into 2 layers: SSL Record Protocol, which is built on a reliable transport protocol such as TCP, and support the high-level protocols to do some basic work such as data encapsulation, compression, and encryption; SSL handshake protocol, which is built on the SSL record protocol, used to authenticate the identity, negotiate the encryption algorithm, exchange the encryption key before the actual data transmission begins.<br>We use HTTPS to implement SSL, HTTPS is a security-oriented HTTP channel. Simply speaking, it’s a secure version of HTTP. So the security foundation of HTTPS is SSL, but now we all use the TLS protocol(Transport Layer Security), which comes from SSL.<br><img src="layer.jpg" alt></p>
@@ -342,8 +348,6 @@
 <p>This will make undertow listening 8443 port, you only can visit website with “https://“ but not “http://“.</p>
 <h2 id="Redirect-HTTP-to-HTTPS"><a href="#Redirect-HTTP-to-HTTPS" class="headerlink" title="Redirect HTTP to HTTPS"></a>Redirect HTTP to HTTPS</h2><p>We can do it with these code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.web.servlet.server.ServletWebServerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> io.undertow.Undertow;</span><br><span class="line"><span class="keyword">import</span> io.undertow.servlet.api.SecurityConstraint;</span><br><span class="line"><span class="keyword">import</span> io.undertow.servlet.api.SecurityInfo;</span><br><span class="line"><span class="keyword">import</span> io.undertow.servlet.api.TransportGuaranteeType;</span><br><span class="line"><span class="keyword">import</span> io.undertow.servlet.api.WebResourceCollection;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebServerConfiguration</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;custom.server.http.port&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> Integer httpPort;</span><br><span class="line">     </span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;server.port&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> Integer httpsPort;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServletWebServerFactory <span class="title">undertowFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        UndertowServletWebServerFactory undertowFactory = <span class="keyword">new</span> UndertowServletWebServerFactory();</span><br><span class="line">        undertowFactory.addBuilderCustomizers((Undertow.Builder builder) -&gt; &#123;</span><br><span class="line">            builder.addHttpListener(httpPort, <span class="string">"0.0.0.0"</span>);</span><br><span class="line">            <span class="comment">// Open HTTP2</span></span><br><span class="line">            builder.setServerOption(UndertowOptions.ENABLE_HTTP2, <span class="keyword">true</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        undertowFactory.addDeploymentInfoCustomizers(deploymentInfo -&gt; &#123;</span><br><span class="line">            <span class="comment">// HTTP Redirect to HTTPS </span></span><br><span class="line">            deploymentInfo.addSecurityConstraint(<span class="keyword">new</span> SecurityConstraint()</span><br><span class="line">                    .addWebResourceCollection(<span class="keyword">new</span> WebResourceCollection().addUrlPattern(<span class="string">"/*"</span>))</span><br><span class="line">                    .setTransportGuaranteeType(TransportGuaranteeType.CONFIDENTIAL)</span><br><span class="line">                    .setEmptyRoleSemantic(SecurityInfo.EmptyRoleSemantic.PERMIT))</span><br><span class="line">                    .setConfidentialPortManager(exchange -&gt; httpsPort);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> undertowFactory;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
-          
-        
       
     </div>
     
@@ -358,14 +362,20 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Spring-Boot/" rel="tag"># Spring Boot</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -375,10 +385,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -386,6 +397,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -406,8 +421,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -460,6 +484,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Foreword"><span class="nav-number">1.</span> <span class="nav-text">Foreword</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#What’s-HTTP2"><span class="nav-number">2.</span> <span class="nav-text">What’s HTTP2?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Why-HTTP2"><span class="nav-number">3.</span> <span class="nav-text">Why HTTP2?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#What’s-HTTPS"><span class="nav-number">4.</span> <span class="nav-text">What’s HTTPS?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Why-HTTPS"><span class="nav-number">5.</span> <span class="nav-text">Why HTTPS?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-use-HTTPS-and-HTTP2"><span class="nav-number">6.</span> <span class="nav-text">How to use HTTPS and HTTP2?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Get-a-SSL-certificate"><span class="nav-number">6.1.</span> <span class="nav-text">Get a SSL certificate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Start-up-HTTPS-amp-HTTP2-in-Spring-Boot"><span class="nav-number">6.2.</span> <span class="nav-text">Start up HTTPS&amp;HTTP2 in Spring Boot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redirect-HTTP-to-HTTPS"><span class="nav-number">6.3.</span> <span class="nav-text">Redirect HTTP to HTTPS</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -593,6 +633,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
