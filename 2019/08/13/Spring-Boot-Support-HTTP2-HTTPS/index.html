@@ -79,23 +79,23 @@
 
 
 
-<meta name="description" content="ForewordNowadays, the common scenario for high-performance secure encryption for enterprise applications is to support both HTTP and HTTPS.This blog will show you how to support HTTP and HPPTS with Sp">
+<meta name="description" content="Nowadays, the common scenario for high-performance secure encryption for enterprise applications is to support both HTTP and HTTPS.This blog will show you how to support HTTP and HPPTS with Spring Boo">
 <meta name="keywords" content="Spring Boot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Boot - Support HTTP2&amp;HTTPS">
 <meta property="og:url" content="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/index.html">
 <meta property="og:site_name" content="Jincheng">
-<meta property="og:description" content="ForewordNowadays, the common scenario for high-performance secure encryption for enterprise applications is to support both HTTP and HTTPS.This blog will show you how to support HTTP and HPPTS with Sp">
+<meta property="og:description" content="Nowadays, the common scenario for high-performance secure encryption for enterprise applications is to support both HTTP and HTTPS.This blog will show you how to support HTTP and HPPTS with Spring Boo">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/demo.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/layer.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/question.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/question.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/cer.png">
-<meta property="og:updated_time" content="2019-08-14T13:10:15.618Z">
+<meta property="og:updated_time" content="2019-08-14T13:20:52.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot - Support HTTP2&amp;HTTPS">
-<meta name="twitter:description" content="ForewordNowadays, the common scenario for high-performance secure encryption for enterprise applications is to support both HTTP and HTTPS.This blog will show you how to support HTTP and HPPTS with Sp">
+<meta name="twitter:description" content="Nowadays, the common scenario for high-performance secure encryption for enterprise applications is to support both HTTP and HTTPS.This blog will show you how to support HTTP and HPPTS with Spring Boo">
 <meta name="twitter:image" content="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/demo.png">
 
 
@@ -306,7 +306,8 @@
       
 
       
-        <h1 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h1><p>Nowadays, the common scenario for high-performance secure encryption for enterprise applications is to support both HTTP and HTTPS.<br>This blog will show you how to support HTTP and HPPTS with Spring Boot. Some of the Spring boot’s web containers can already supports HTTP2, this example used Undertow.</p>
+        <p>Nowadays, the common scenario for high-performance secure encryption for enterprise applications is to support both HTTP and HTTPS.<br>This blog will show you how to support HTTP and HPPTS with Spring Boot. Some of the Spring boot’s web containers can already supports HTTP2, this example used Undertow.<br><a id="more"></a></p>
+<h1 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h1><p>Nowadays, the common scenario for high-performance secure encryption for enterprise applications is to support both HTTP and HTTPS.<br>This blog will show you how to support HTTP and HPPTS with Spring Boot. Some of the Spring boot’s web containers can already supports HTTP2, this example used Undertow.</p>
 <h1 id="What’s-HTTP2"><a href="#What’s-HTTP2" class="headerlink" title="What’s HTTP2?"></a>What’s HTTP2?</h1><p>From the WIKIPEDIA: HTTP/2 (originally named HTTP/2.0) is a major revision of the HTTP network protocol used by the World Wide Web. It was derived from the earlier experimental SPDY protocol, originally developed by Google. HTTP/2 was developed by the Hypertext Transfer Protocol working group httpbis (where bis means “second”) of the Internet Engineering Task Force. HTTP/2 is the first new version of HTTP since HTTP 1.1, which was standardized in RFC 2068 in 1997. The Working Group presented HTTP/2 to IESG for consideration as a Proposed Standard in December 2014, and IESG approved it to publish as Proposed Standard on February 17, 2015. The HTTP/2 specification was published as RFC 7540 in May 2015.</p>
 <h1 id="Why-HTTP2"><a href="#Why-HTTP2" class="headerlink" title="Why HTTP2?"></a>Why HTTP2?</h1><p>Let’s see the Akamai Demo from <a href="https://http2.akamai.com/demo" target="_blank" rel="noopener">https://http2.akamai.com/demo</a><br><img src="demo.png" alt><br>We can see the load speed of HTTP2 is faster, but the latency is longer, that’s interesting, because reducing latency is a big feature of HTTP2, maybe depend on the network quality. Anyway, faster is good.</p>
 <h1 id="What’s-HTTPS"><a href="#What’s-HTTPS" class="headerlink" title="What’s HTTPS?"></a>What’s HTTPS?</h1><p>Let’s dig into SSL first. SSL (Secure Sockets Layer) is a security protocol that provides security and data integrity for network communications, SSL is working at the transport layer. SSL can be divided into 2 layers: SSL Record Protocol, which is built on a reliable transport protocol such as TCP, and support the high-level protocols to do some basic work such as data encapsulation, compression, and encryption; SSL handshake protocol, which is built on the SSL record protocol, used to authenticate the identity, negotiate the encryption algorithm, exchange the encryption key before the actual data transmission begins.<br>We use HTTPS to implement SSL, HTTPS is a security-oriented HTTP channel. Simply speaking, it’s a secure version of HTTP. So the security foundation of HTTPS is SSL, but now we all use the TLS protocol(Transport Layer Security), which comes from SSL.<br><img src="layer.jpg" alt></p>
