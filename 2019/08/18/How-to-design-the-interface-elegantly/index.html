@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Jincheng">
 <meta property="og:description" content="There are many factors we have to consider during disigning an interface, this blog will discuss these factors in regular and irregular ways.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-18T12:09:10.388Z">
+<meta property="og:updated_time" content="2019-08-18T12:12:03.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to design the interface elegantly">
 <meta name="twitter:description" content="There are many factors we have to consider during disigning an interface, this blog will discuss these factors in regular and irregular ways.">
@@ -314,9 +314,9 @@
 <li>Filter &amp; Combination  </li>
 </ul>
 <p>This blog will try to analysis these factors.</p>
-<h1 id="Regular"><a href="#Regular" class="headerlink" title="Regular"></a>Regular</h1><h2 id="1-Responsibility"><a href="#1-Responsibility" class="headerlink" title="1. Responsibility"></a>1. Responsibility</h2><p>   It must be clear that what is the responsibility of an interface, what business problem does it solve.  </p>
-<h2 id="2-Single"><a href="#2-Single" class="headerlink" title="2. Single"></a>2. Single</h2><p>   One interface, one duty. A lot of designer thought that more is better, but it will cost a lot more when you try to extend your system. Jobs told us, less is more.  </p>
-<h2 id="3-Protocol"><a href="#3-Protocol" class="headerlink" title="3. Protocol"></a>3. Protocol</h2><p>   The interface would use what protocol depend on the situation:  </p>
+<h1 id="Regular"><a href="#Regular" class="headerlink" title="Regular"></a>Regular</h1><h2 id="1-Responsibility"><a href="#1-Responsibility" class="headerlink" title="1. Responsibility"></a>1. Responsibility</h2><p>It must be clear that what is the responsibility of an interface, what business problem does it solve.  </p>
+<h2 id="2-Single"><a href="#2-Single" class="headerlink" title="2. Single"></a>2. Single</h2><p>One interface, one duty. A lot of designer thought that more is better, but it will cost a lot more when you try to extend your system. Jobs told us, less is more.  </p>
+<h2 id="3-Protocol"><a href="#3-Protocol" class="headerlink" title="3. Protocol"></a>3. Protocol</h2><p>The interface would use what protocol depend on the situation:  </p>
 <ul>
 <li>FTP : when you need transfer files</li>
 <li>HTTP: the data you send through this interface is not sensitive, low security requirement</li>
@@ -337,17 +337,16 @@
 <li>Proxy<h2 id="8-API-version"><a href="#8-API-version" class="headerlink" title="8. API version"></a>8. API version</h2>Sometimes we should add version in the url: <a href="http://api.demo.com/v{d}/" target="_blank" rel="noopener">http://api.demo.com/v{d}/</a>, like this :<br>/api/v1.0/Pruducts/2019  list all products in 2019 with version number 1.0<h2 id="9-Filter"><a href="#9-Filter" class="headerlink" title="9. Filter"></a>9. Filter</h2>We should add some condition filter when the size of records is huge, like : top, page, group, sort, where.<br>Here is some examples:  </li>
 <li>?limit=100 : return 100 records</li>
 <li>?offset=101: return from num 101 records</li>
-<li>?page=10 : page num 10<br>per_page=100: 100 records per page</li>
+<li>?page=10 : page num 10<br>  per_page=100: 100 records per page</li>
 <li>?sortby=name</li>
 <li>?order=desc</li>
 <li>group=groupname</li>
 <li>product_type=1<h2 id="10-Data-format"><a href="#10-Data-format" class="headerlink" title="10. Data format"></a>10. Data format</h2></li>
 <li><p>Failed</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"status"</span>:<span class="number">0</span>,<span class="comment">// 0-failed，1-succeed</span></span><br><span class="line">    <span class="string">"error_code"</span>:<span class="string">"2003"</span>,</span><br><span class="line">    <span class="string">"error_des"</span>:<span class="string">"Authentication failed"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Succeed   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"sid"</span>:<span class="string">"jc20190816"</span>,<span class="comment">//token id</span></span><br><span class="line">    <span class="string">"users"</span>:&#123;</span><br><span class="line">        <span class="string">"id"</span>:<span class="string">"jc201908162354"</span>,</span><br><span class="line">        <span class="string">"name"</span>:<span class="string">"Jincheng-Jason"</span>,</span><br><span class="line">        <span class="string">"addr"</span>:<span class="string">"Auckland"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"status"</span>:<span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
+<li><p>Succeed  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"sid"</span>:<span class="string">"jc20190816"</span>,<span class="comment">//token id</span></span><br><span class="line">    <span class="string">"users"</span>:&#123;</span><br><span class="line">        <span class="string">"id"</span>:<span class="string">"jc201908162354"</span>,</span><br><span class="line">        <span class="string">"name"</span>:<span class="string">"Jincheng-Jason"</span>,</span><br><span class="line">        <span class="string">"addr"</span>:<span class="string">"Auckland"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"status"</span>:<span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="11-Robustness"><a href="#11-Robustness" class="headerlink" title="11. Robustness"></a>11. Robustness</h2><p>Security, Concurrency, Anti-attack, Cross-domain etc.</p>
