@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Jincheng">
 <meta property="og:description" content="There are many factors we have to consider during disigning an interface, this blog will discuss these factors in regular and irregular ways.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-18T12:12:03.859Z">
+<meta property="og:updated_time" content="2019-08-18T12:14:10.181Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to design the interface elegantly">
 <meta name="twitter:description" content="There are many factors we have to consider during disigning an interface, this blog will discuss these factors in regular and irregular ways.">
@@ -316,11 +316,11 @@
 <p>This blog will try to analysis these factors.</p>
 <h1 id="Regular"><a href="#Regular" class="headerlink" title="Regular"></a>Regular</h1><h2 id="1-Responsibility"><a href="#1-Responsibility" class="headerlink" title="1. Responsibility"></a>1. Responsibility</h2><p>It must be clear that what is the responsibility of an interface, what business problem does it solve.  </p>
 <h2 id="2-Single"><a href="#2-Single" class="headerlink" title="2. Single"></a>2. Single</h2><p>One interface, one duty. A lot of designer thought that more is better, but it will cost a lot more when you try to extend your system. Jobs told us, less is more.  </p>
-<h2 id="3-Protocol"><a href="#3-Protocol" class="headerlink" title="3. Protocol"></a>3. Protocol</h2><p>The interface would use what protocol depend on the situation:  </p>
+<h2 id="3-Protocol"><a href="#3-Protocol" class="headerlink" title="3. Protocol"></a>3. Protocol</h2><p>The interface would use what protocol depend on the situation:</p>
 <ul>
 <li>FTP : when you need transfer files</li>
 <li>HTTP: the data you send through this interface is not sensitive, low security requirement</li>
-<li>HTTPS: HTTP + SSL, sensitive data, high security requirement  <h2 id="4-Routing"><a href="#4-Routing" class="headerlink" title="4. Routing"></a>4. Routing</h2>API represents resource, so basicly we use more nons and less verbs:<br>/api/v1.0/Product/2019<br>/api/v1.0/Users/2019<h2 id="5-Request-methods"><a href="#5-Request-methods" class="headerlink" title="5. Request methods"></a>5. Request methods</h2></li>
+<li>HTTPS: HTTP + SSL, sensitive data, high security requirement<h2 id="4-Routing"><a href="#4-Routing" class="headerlink" title="4. Routing"></a>4. Routing</h2>API represents resource, so basicly we use more nons and less verbs:<br>/api/v1.0/Product/2019<br>/api/v1.0/Users/2019<h2 id="5-Request-methods"><a href="#5-Request-methods" class="headerlink" title="5. Request methods"></a>5. Request methods</h2></li>
 <li>Get /users:  list all users</li>
 <li>Get /users/id: get user by id</li>
 <li>Post /user:  new user</li>
