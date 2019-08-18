@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Jincheng">
 <meta property="og:description" content="There are many factors we have to consider during disigning an interface, this blog will discuss these factors in regular and irregular ways.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-18T12:15:45.552Z">
+<meta property="og:updated_time" content="2019-08-18T12:22:45.375Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to design the interface elegantly">
 <meta name="twitter:description" content="There are many factors we have to consider during disigning an interface, this blog will discuss these factors in regular and irregular ways.">
@@ -320,28 +320,43 @@
 <ul>
 <li>FTP : when you need transfer files</li>
 <li>HTTP: the data you send through this interface is not sensitive, low security requirement</li>
-<li>HTTPS: HTTP + SSL, sensitive data, high security requirement<h2 id="4-Routing"><a href="#4-Routing" class="headerlink" title="4. Routing"></a>4. Routing</h2>API represents resource, so basicly we use more nons and less verbs:<br>/api/v1.0/Product/2019<br>/api/v1.0/Users/2019<h2 id="5-Request-methods"><a href="#5-Request-methods" class="headerlink" title="5. Request methods"></a>5. Request methods</h2></li>
+<li>HTTPS: HTTP + SSL, sensitive data, high security requirement  </li>
+</ul>
+<h2 id="4-Routing"><a href="#4-Routing" class="headerlink" title="4. Routing"></a>4. Routing</h2><p>API represents resource, so basicly we use more nons and less verbs:<br>/api/v1.0/Product/2019<br>/api/v1.0/Users/2019</p>
+<h2 id="5-Request-methods"><a href="#5-Request-methods" class="headerlink" title="5. Request methods"></a>5. Request methods</h2><ul>
 <li>Get /users:  list all users</li>
 <li>Get /users/id: get user by id</li>
 <li>Post /user:  new user</li>
 <li>Put /user/id: alter user by id</li>
-<li>Delete /user/id: delete user by id<h2 id="6-Domain"><a href="#6-Domain" class="headerlink" title="6. Domain"></a>6. Domain</h2>There are main domain and business domain, main domain can be used for the API that will not change for a long time, business domain can be used for the specific area. For example:  </li>
+<li>Delete /user/id: delete user by id</li>
+</ul>
+<h2 id="6-Domain"><a href="#6-Domain" class="headerlink" title="6. Domain"></a>6. Domain</h2><p>There are main domain and business domain, main domain can be used for the API that will not change for a long time, business domain can be used for the specific area. For example:  </p>
+<ul>
 <li>google.com: main domain</li>
-<li>play.google.com: business domain<h2 id="7-Cross-domain"><a href="#7-Cross-domain" class="headerlink" title="7. Cross-domain"></a>7. Cross-domain</h2>After domain name has been determined, we must consider the cross-domain problem, and use what kind of methods:</li>
+<li>play.google.com: business domain</li>
+</ul>
+<h2 id="7-Cross-domain"><a href="#7-Cross-domain" class="headerlink" title="7. Cross-domain"></a>7. Cross-domain</h2><p>After domain name has been determined, we must consider the cross-domain problem, and use what kind of methods:</p>
+<ul>
 <li>JSONP</li>
 <li>CORS</li>
 <li>window.name + iframe</li>
 <li>window.postMessage()</li>
 <li>change document.domain for sub domain</li>
 <li>Websocket</li>
-<li>Proxy<h2 id="8-API-version"><a href="#8-API-version" class="headerlink" title="8. API version"></a>8. API version</h2>Sometimes we should add version in the url: <a href="http://api.demo.com/v{d}/" target="_blank" rel="noopener">http://api.demo.com/v{d}/</a>, like this :<br>/api/v1.0/Pruducts/2019  list all products in 2019 with version number 1.0<h2 id="9-Filter"><a href="#9-Filter" class="headerlink" title="9. Filter"></a>9. Filter</h2>We should add some condition filter when the size of records is huge, like : top, page, group, sort, where.<br>Here is some examples:  </li>
+<li>Proxy</li>
+</ul>
+<h2 id="8-API-version"><a href="#8-API-version" class="headerlink" title="8. API version"></a>8. API version</h2><p>Sometimes we should add version in the url: <a href="http://api.demo.com/v{d}/" target="_blank" rel="noopener">http://api.demo.com/v{d}/</a>, like this :<br>/api/v1.0/Pruducts/2019  list all products in 2019 with version number 1.0</p>
+<h2 id="9-Filter"><a href="#9-Filter" class="headerlink" title="9. Filter"></a>9. Filter</h2><p>We should add some condition filter when the size of records is huge, like : top, page, group, sort, where.<br>Here is some examples:  </p>
+<ul>
 <li>?limit=100 : return 100 records</li>
 <li>?offset=101: return from num 101 records</li>
 <li>?page=10 : page num 10<br>  per_page=100: 100 records per page</li>
 <li>?sortby=name</li>
 <li>?order=desc</li>
 <li>group=groupname</li>
-<li>product_type=1<h2 id="10-Data-format"><a href="#10-Data-format" class="headerlink" title="10. Data format"></a>10. Data format</h2></li>
+<li>product_type=1</li>
+</ul>
+<h2 id="10-Data-format"><a href="#10-Data-format" class="headerlink" title="10. Data format"></a>10. Data format</h2><ul>
 <li><p>Failed</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"status"</span>:<span class="number">0</span>,<span class="comment">// 0-failed，1-succeed</span></span><br><span class="line">    <span class="string">"error_code"</span>:<span class="string">"2003"</span>,</span><br><span class="line">    <span class="string">"error_des"</span>:<span class="string">"Authentication failed"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
