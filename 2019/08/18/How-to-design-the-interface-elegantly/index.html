@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Design pattern,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Jincheng">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="ForewordThere are many factors we have to consider during disigning an interface like these:   Business positioning Security Scalability Stability Cross-domain Protocol Routing Single responsibility F">
+<meta name="keywords" content="Design pattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to design the interface elegantly">
+<meta property="og:url" content="http://yoursite.com/2019/08/18/How-to-design-the-interface-elegantly/index.html">
 <meta property="og:site_name" content="Jincheng">
+<meta property="og:description" content="ForewordThere are many factors we have to consider during disigning an interface like these:   Business positioning Security Scalability Stability Cross-domain Protocol Routing Single responsibility F">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-18T12:07:14.345Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jincheng">
+<meta name="twitter:title" content="How to design the interface elegantly">
+<meta name="twitter:description" content="ForewordThere are many factors we have to consider during disigning an interface like these:   Business positioning Security Scalability Stability Cross-domain Protocol Routing Single responsibility F">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/18/How-to-design-the-interface-elegantly/">
 
 
 
 
 
-  <title>Jincheng</title>
+  <title>How to design the interface elegantly | Jincheng</title>
   
 
 
@@ -140,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,9 +218,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/18/How-to-design-the-interface-elegantly/" itemprop="url">How to design the interface elegantly</a></h1>
+          <h1 class="post-title" itemprop="name headline">How to design the interface elegantly</h1>
         
 
         <div class="post-meta">
@@ -298,9 +300,7 @@
       
 
       
-        
-          
-            <h1 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h1><p>There are many factors we have to consider during disigning an interface like these: </p>
+        <h1 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h1><p>There are many factors we have to consider during disigning an interface like these: </p>
 <ul>
 <li>Business positioning</li>
 <li>Security</li>
@@ -353,8 +353,6 @@
 <h2 id="12-Scalability"><a href="#12-Scalability" class="headerlink" title="12. Scalability"></a>12. Scalability</h2><h2 id="13-Permission"><a href="#13-Permission" class="headerlink" title="13. Permission"></a>13. Permission</h2><h2 id="14-Status-code-or-return-code"><a href="#14-Status-code-or-return-code" class="headerlink" title="14. Status code or return code"></a>14. Status code or return code</h2><h1 id="Irregular"><a href="#Irregular" class="headerlink" title="Irregular"></a>Irregular</h1><p>Sometimes one single interface has to return the data from other several APIs.  </p>
 <h2 id="1-Request"><a href="#1-Request" class="headerlink" title="1. Request"></a>1. Request</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data:[</span><br><span class="line">    &#123;<span class="attr">url</span>:<span class="string">'api1'</span>,<span class="attr">type</span>:<span class="string">'get'</span>,<span class="attr">data</span>:&#123;...&#125;&#125;,</span><br><span class="line">    &#123;<span class="attr">url</span>:<span class="string">'api2'</span>,<span class="attr">type</span>:<span class="string">'get'</span>,<span class="attr">data</span>:&#123;...&#125;&#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <h2 id="2-Response"><a href="#2-Response" class="headerlink" title="2. Response"></a>2. Response</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    status:<span class="number">0</span>,</span><br><span class="line">    msg:<span class="string">''</span>,</span><br><span class="line">    data:[</span><br><span class="line">        &#123;<span class="attr">status</span>:<span class="number">1</span>,<span class="attr">msg</span>:<span class="string">''</span>,<span class="attr">data</span>:[]&#125;,</span><br><span class="line">        &#123;<span class="attr">status</span>:<span class="number">1</span>,<span class="attr">msg</span>:<span class="string">''</span>,<span class="attr">data</span>:&#123;&#125;&#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
       
     </div>
     
@@ -369,138 +367,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jincheng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jincheng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/" itemprop="url">Spring Boot - Support HTTP2&HTTPS</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-13T23:10:05+12:00">
-                2019-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/Design-pattern/" rel="tag"># Design pattern</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <p>Nowadays, the common scenario for high-performance secure encryption for enterprise applications is to support both HTTP and HTTPS.<br>This blog will show you how to support HTTP and HPPTS with Spring Boot. Some of the Spring boot’s web containers can already supports HTTP2, this example used Undertow.<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/#more" rel="contents">
-              Read more &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/13/Spring-Boot-Support-HTTP2-HTTPS/" rel="next" title="Spring Boot - Support HTTP2&HTTPS">
+                <i class="fa fa-chevron-left"></i> Spring Boot - Support HTTP2&HTTPS
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -510,10 +406,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -521,6 +418,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -541,8 +442,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -595,6 +505,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Foreword"><span class="nav-number">1.</span> <span class="nav-text">Foreword</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Regular"><span class="nav-number">2.</span> <span class="nav-text">Regular</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Responsibility"><span class="nav-number">2.1.</span> <span class="nav-text">1. Responsibility</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Single"><span class="nav-number">2.2.</span> <span class="nav-text">2. Single</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Protocol"><span class="nav-number">2.3.</span> <span class="nav-text">3. Protocol</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Routing"><span class="nav-number">2.4.</span> <span class="nav-text">4. Routing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Request-methods"><span class="nav-number">2.5.</span> <span class="nav-text">5. Request methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Domain"><span class="nav-number">2.6.</span> <span class="nav-text">6. Domain</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Cross-domain"><span class="nav-number">2.7.</span> <span class="nav-text">7. Cross-domain</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-API-version"><span class="nav-number">2.8.</span> <span class="nav-text">8. API version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Filter"><span class="nav-number">2.9.</span> <span class="nav-text">9. Filter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Data-format"><span class="nav-number">2.10.</span> <span class="nav-text">10. Data format</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Robustness"><span class="nav-number">2.11.</span> <span class="nav-text">11. Robustness</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Scalability"><span class="nav-number">2.12.</span> <span class="nav-text">12. Scalability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Permission"><span class="nav-number">2.13.</span> <span class="nav-text">13. Permission</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-Status-code-or-return-code"><span class="nav-number">2.14.</span> <span class="nav-text">14. Status code or return code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Irregular"><span class="nav-number">3.</span> <span class="nav-text">Irregular</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Request"><span class="nav-number">3.1.</span> <span class="nav-text">1. Request</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Response"><span class="nav-number">3.2.</span> <span class="nav-text">2. Response</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -728,6 +654,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
