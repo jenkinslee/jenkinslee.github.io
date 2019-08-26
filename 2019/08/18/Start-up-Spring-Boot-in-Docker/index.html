@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Spring Boot,Docker,Devops,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Docker plays a vital role in the Devops world, it can help us to deliver applications more easily. This blog will show how to start up a Spring Boot application in Docker.">
+<meta name="keywords" content="Spring Boot,Docker,Devops">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Start up Spring Boot in Docker">
+<meta property="og:url" content="http://yoursite.com/2019/08/18/Start-up-Spring-Boot-in-Docker/index.html">
+<meta property="og:site_name" content="Jincheng">
+<meta property="og:description" content="Docker plays a vital role in the Devops world, it can help us to deliver applications more easily. This blog will show how to start up a Spring Boot application in Docker.">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/08/18/Start-up-Spring-Boot-in-Docker/demo.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/18/Start-up-Spring-Boot-in-Docker/build.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/18/Start-up-Spring-Boot-in-Docker/image.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/18/Start-up-Spring-Boot-in-Docker/run.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/18/Start-up-Spring-Boot-in-Docker/demo.png">
+<meta property="og:updated_time" content="2019-08-26T12:17:29.581Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Start up Spring Boot in Docker">
+<meta name="twitter:description" content="Docker plays a vital role in the Devops world, it can help us to deliver applications more easily. This blog will show how to start up a Spring Boot application in Docker.">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/18/Start-up-Spring-Boot-in-Docker/demo.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/18/Start-up-Spring-Boot-in-Docker/">
+
+
+
+
+
+  <title>Start up Spring Boot in Docker | Jincheng</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jincheng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Jincheng's Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/18/Start-up-Spring-Boot-in-Docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jincheng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jincheng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Start up Spring Boot in Docker</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-18T23:44:11+12:00">
+                2019-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Docker plays a vital role in the Devops world, it can help us to deliver applications more easily. This blog will show how to start up a Spring Boot application in Docker.<br><a id="more"></a></p>
+<h1 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h1><p>Docker plays a vital role in the Devops world, it can help us to deliver applications more easily. This blog will show how to start up a Spring Boot application in Docker.</p>
+<h1 id="What-is-Docker"><a href="#What-is-Docker" class="headerlink" title="What is Docker?"></a>What is Docker?</h1><p>Docker is a opensource containerisation platform designed to make it easier to create , deploy and run various applications by using containers. Docker containers wrap up a piece of software into a complete file system that contains everything the software needs to run.</p>
+<h1 id="Why-using-Docker"><a href="#Why-using-Docker" class="headerlink" title="Why using Docker?"></a>Why using Docker?</h1><p>If you ever try to deploy an application which is developed in other OS, you were probably blocked with a lot of configuration errors or exceptions. Docker can help you to get rid of these problems, as a container, it basically consists of an entire runtime environment, which includes an application with all its dependencies, like libraries and other binaries, and even the configuration files needed to run it, all bundled into one package. Hence, by containerising the differences in operating system distributions, the underlying infrastructure is abstracted away. Containers encapsulate all the discrete components of application logic which are provisioned, that too with the minimal resources needed to do their job. </p>
+<h1 id="How-to-use-Docker"><a href="#How-to-use-Docker" class="headerlink" title="How to use Docker?"></a>How to use Docker?</h1><h2 id="1-Create-a-Spring-Boot-application"><a href="#1-Create-a-Spring-Boot-application" class="headerlink" title="1. Create a Spring Boot application"></a>1. Create a Spring Boot application</h2><p>We can try to use Gradle this time, here is build.gradle:  </p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">	id <span class="string">'org.springframework.boot'</span> version <span class="string">'2.1.7.RELEASE'</span></span><br><span class="line">	id <span class="string">'io.spring.dependency-management'</span> version <span class="string">'1.0.8.RELEASE'</span></span><br><span class="line">	id <span class="string">'java'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">group = <span class="string">'com.jincheng'</span></span><br><span class="line">version = <span class="string">'0.0.1-SNAPSHOT'</span></span><br><span class="line">sourceCompatibility = <span class="string">'1.8'</span></span><br><span class="line"></span><br><span class="line">bootJar &#123;</span><br><span class="line">    baseName = <span class="string">'dockerdemo'</span></span><br><span class="line">	version = <span class="string">'0.1.0'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">	mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">	implementation <span class="string">'org.springframework.boot:spring-boot-starter-web'</span></span><br><span class="line">	testImplementation <span class="string">'org.springframework.boot:spring-boot-starter-test'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Create a simple controller:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.jincheng.dockerdemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DockerdemoApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">home</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"Hello Docker Demo"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(DockerdemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Start up we can visit this simple API:</p>
+<p><img src="demo.png" alt></p>
+<h2 id="2-Deploy-with-Docker"><a href="#2-Deploy-with-Docker" class="headerlink" title="2. Deploy with Docker"></a>2. Deploy with Docker</h2><h3 id="2-1-Create-a-Dockfile"><a href="#2-1-Create-a-Dockfile" class="headerlink" title="2.1 Create a Dockfile:"></a>2.1 Create a Dockfile:</h3><figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> openjdk:<span class="number">8</span>-jdk-alpine</span><br><span class="line"><span class="keyword">VOLUME</span> /tmp</span><br><span class="line"><span class="keyword">ARG</span> JAR_FILE</span><br><span class="line"><span class="keyword">COPY</span> $&#123;JAR_FILE&#125; app.jar</span><br><span class="line"><span class="keyword">ENTRYPOINT</span> ["java","-jar","/app.jar"]</span><br></pre></td></tr></table></figure>
+<p>This Dockerfile is very simple, but that’s all you need to run a Spring Boot app with no frills: just Java and a JAR file. The project JAR file is ADDed to the container as “app.jar” and then executed in the ENTRYPOINT.</p>
+<h3 id="2-2-Build-a-Docker-Image"><a href="#2-2-Build-a-Docker-Image" class="headerlink" title="2.2 Build a Docker Image"></a>2.2 Build a Docker Image</h3><p>Add new plugin in Gradle:</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    ...</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        ...</span><br><span class="line">        classpath(<span class="string">'gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">group = <span class="string">'springio'</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">apply <span class="string">plugin:</span> <span class="string">'com.palantir.docker'</span></span><br><span class="line"></span><br><span class="line">task unpack(<span class="string">type:</span> Copy) &#123;</span><br><span class="line">    dependsOn bootJar</span><br><span class="line">    from(zipTree(tasks.bootJar.outputs.files.singleFile))</span><br><span class="line">    into(<span class="string">"build/dependency"</span>)</span><br><span class="line">&#125;</span><br><span class="line">docker &#123;</span><br><span class="line">    name <span class="string">"$&#123;project.group&#125;/$&#123;bootJar.baseName&#125;"</span></span><br><span class="line">    copySpec.from(tasks.unpack.outputs).into(<span class="string">"dependency"</span>)</span><br><span class="line">    buildArgs([<span class="string">'DEPENDENCY'</span>: <span class="string">"dependency"</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The configuration specifies 4 things:</p>
+<p>a task to unpack the fat jar file</p>
+<p>the image name (or tag) is set up from the jar file properties, which will end up here as springio/gs-spring-boot-docker</p>
+<p>the location of the unpacked jarfile, which we could have hard coded in the Dockerfile</p>
+<p>a build argument for docker pointing to the jar file</p>
+<p>You can build a tagged docker image and then push it to a remote repository with Gradle in one command:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./gradlew build docker</span><br></pre></td></tr></table></figure>
+<p>Or use the docker build:</p>
+<p><img src="build.png" alt></p>
+<p>Then use docker images command we can see the image we built:</p>
+<p><img src="image.png" alt></p>
+<h3 id="2-3-Run-the-image"><a href="#2-3-Run-the-image" class="headerlink" title="2.3 Run the image"></a>2.3 Run the image</h3><p><img src="run.png" alt></p>
+<p>we can also visit our API in the image:</p>
+<p><img src="demo.png" alt></p>
+<h2 id="3-Docker-push-and-optimize"><a href="#3-Docker-push-and-optimize" class="headerlink" title="3. Docker push and optimize"></a>3. Docker push and optimize</h2><p>To be continued</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring-Boot/" rel="tag"># Spring Boot</a>
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+            <a href="/tags/Devops/" rel="tag"># Devops</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/15/Conditional-annotation-in-Spring-Boot/" rel="next" title="Conditional annotation in Spring Boot">
+                <i class="fa fa-chevron-left"></i> Conditional annotation in Spring Boot
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/22/Deploy-a-Spring-Boot-with-Docker/" rel="prev" title="Deploy a Spring Boot with Docker">
+                Deploy a Spring Boot with Docker <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Jincheng">
+            
+              <p class="site-author-name" itemprop="name">Jincheng</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Foreword"><span class="nav-number">1.</span> <span class="nav-text">Foreword</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-Docker"><span class="nav-number">2.</span> <span class="nav-text">What is Docker?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Why-using-Docker"><span class="nav-number">3.</span> <span class="nav-text">Why using Docker?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-use-Docker"><span class="nav-number">4.</span> <span class="nav-text">How to use Docker?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Create-a-Spring-Boot-application"><span class="nav-number">4.1.</span> <span class="nav-text">1. Create a Spring Boot application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Deploy-with-Docker"><span class="nav-number">4.2.</span> <span class="nav-text">2. Deploy with Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Create-a-Dockfile"><span class="nav-number">4.2.1.</span> <span class="nav-text">2.1 Create a Dockfile:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Build-a-Docker-Image"><span class="nav-number">4.2.2.</span> <span class="nav-text">2.2 Build a Docker Image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Run-the-image"><span class="nav-number">4.2.3.</span> <span class="nav-text">2.3 Run the image</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Docker-push-and-optimize"><span class="nav-number">4.3.</span> <span class="nav-text">3. Docker push and optimize</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jincheng</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
